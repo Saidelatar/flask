@@ -1,16 +1,16 @@
 from flask import Flask, Response, render_template
 from flask.json import jsonify
-from flask_cors import CORS
+python
 import cv2
 import mediapipe as mp
 import numpy as np
 import random
 
-app = Flask(_name_)
-CORS(app)
+app = Flask(__name__)
+
 
 class HandTracker:
-    def _init_(self, mode=False, maxHands=2, detectionCon=0.5, trackCon=0.5):
+    def __init__(self, mode=False, maxHands=2, detectionCon=0.5, trackCon=0.5):
         self.mode = mode
         self.maxHands = maxHands
         self.detectionCon = detectionCon
@@ -57,7 +57,7 @@ class HandTracker:
         return upfingers
 
 class ColorRect:
-    def _init_(self, x, y, w, h, color, text='', alpha=0.5):
+    def __init__(self, x, y, w, h, color, text='', alpha=0.5):
         self.x = x
         self.y = y
         self.w = w
@@ -81,7 +81,7 @@ class ColorRect:
         return (self.x + self.w > x > self.x) and (self.y + self.h > y > self.y)
 
 class AirDrawingApp:
-    def _init_(self):
+    def __init__(self):
         self.detector = HandTracker(detectionCon=1)
         self.cap = cv2.VideoCapture(0)
         self.cap.set(3, 1280)
@@ -221,5 +221,5 @@ def gen():
 def video_feed():
     return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
