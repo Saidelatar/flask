@@ -1,13 +1,10 @@
-from flask import Flask, Response, render_template
-from flask.json import jsonify
-python
+from flask import Flask, Response, jsonify
 import cv2
 import mediapipe as mp
 import numpy as np
 import random
 
 app = Flask(__name__)
-
 
 class HandTracker:
     def __init__(self, mode=False, maxHands=2, detectionCon=0.5, trackCon=0.5):
