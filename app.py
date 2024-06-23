@@ -6,11 +6,11 @@ import mediapipe as mp
 import numpy as np
 import random
 
-app = Flask(_name_)
+app = Flask(__name__)
 CORS(app)
 
 class HandTracker:
-    def _init_(self, mode=False, maxHands=2, detectionCon=0.5, trackCon=0.5):
+    def __init__(self, mode=False, maxHands=2, detectionCon=0.5, trackCon=0.5):
         self.mode = mode
         self.maxHands = maxHands
         self.detectionCon = detectionCon
@@ -81,7 +81,7 @@ class ColorRect:
         return (self.x + self.w > x > self.x) and (self.y + self.h > y > self.y)
 
 class AirDrawingApp:
-    def _init_(self):
+    def __init__(self):
         self.detector = HandTracker(detectionCon=1)
         self.cap = cv2.VideoCapture(0)
         self.cap.set(3, 1280)
@@ -221,5 +221,5 @@ def gen():
 def video_feed():
     return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
